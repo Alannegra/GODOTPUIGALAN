@@ -27,6 +27,7 @@ func detect_turn_around():
 	if not $RayCast2D.is_colliding() and is_on_floor():
 		is_moving_left = !is_moving_left
 		scale.x = -scale.x
+		$Sprite.position.x = 10
 
 func hit():
 	$AttackDetector.monitoring = true
@@ -37,9 +38,13 @@ func end_of_hit():
 func start_walk():
 	$AnimationEnemy.play("Run")
 	
-#func _on_PlayerDetector_body_entered(body):
-#	$AnimationEnemy.play("Attack")
+func _on_PlayerDetector_body_entered(body):
+	$AnimationEnemy.play("Attack")
 
 
 #func _on_AttackDetector_body_entered(body):
-#	get_tree().reload_current_scene()
+	#get_tree().reload_current_scene()
+
+
+
+
