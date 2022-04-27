@@ -42,8 +42,8 @@ func _on_PlayerDetector_body_entered(body):
 	$AnimationEnemy.play("Attack")
 
 
-#func _on_AttackDetector_body_entered(body):
-	#get_tree().reload_current_scene()
+func _on_AttackDetector_body_entered(body):
+	get_tree().reload_current_scene()
 
 
 

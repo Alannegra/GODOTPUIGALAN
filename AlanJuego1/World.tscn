@@ -1,11 +1,11 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://viking2.png" type="Texture" id=1]
 [ext_resource path="res://tiles2.tres" type="TileSet" id=2]
 [ext_resource path="res://Player.gd" type="Script" id=3]
 [ext_resource path="res://ExperimentPixel.png" type="Texture" id=4]
 [ext_resource path="res://SkeletonAttackRun.png" type="Texture" id=5]
-[ext_resource path="res://AttackRunHunter.png" type="Texture" id=6]
+[ext_resource path="res://CarreteAttackRunIddleFallV.3.png" type="Texture" id=6]
 [ext_resource path="res://Enemy.gd" type="Script" id=7]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -143,7 +143,55 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2 ]
+"values": [ 52, 53, 54 ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "Fall"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "Idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 26, 27, 28, 29 ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "Jump"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -175,7 +223,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51 ]
+"values": [ 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103 ]
 }
 
 [sub_resource type="CapsuleShape2D" id=15]
@@ -298,7 +346,7 @@ script = ExtResource( 3 )
 position = Vector2( 0, -4 )
 texture = ExtResource( 6 )
 hframes = 26
-vframes = 2
+vframes = 4
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Player2"]
 shape = SubResource( 18 )
@@ -310,6 +358,9 @@ smoothing_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player2"]
 anims/Attack = SubResource( 9 )
+anims/Fall = SubResource( 19 )
+anims/Idle = SubResource( 20 )
+anims/Jump = SubResource( 21 )
 anims/RESET = SubResource( 10 )
 anims/Run = SubResource( 11 )
 
@@ -354,6 +405,8 @@ position = Vector2( 14, 0 )
 shape = SubResource( 16 )
 
 [node name="AttackDetector" type="Area2D" parent="Enemy"]
+collision_layer = 0
+collision_mask = 2
 monitoring = false
 monitorable = false
 
